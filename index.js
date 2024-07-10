@@ -6,6 +6,7 @@ const Admin = require('./models/Admin'); // Add this line
 const Payments = require('./models/Payments.js');
 const Users = require('./models/Users.js');
 const TableAudit = require('./models/TableAudit.js');
+const cors = require('cors');
 require('dotenv/config'); //enables using .env file
 
 const app = express();
@@ -32,6 +33,7 @@ app.use((req, res, next) => {
     next();
 });
 
+app.use(cors({origin: 'https://restaurant-frontend-1.vercel.app/'}));
 // DB CONNECTION
 mongoose.connect(process.env.DB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
